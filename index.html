@@ -7,7 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Cairo', sans-serif; background-color: #f3f4f6; }
+                body { font-family: 'Cairo', sans-serif; background-color: #f3f4f6; }
+        .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+        header.sticky + main { padding-top: 0.5rem !important; }
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.4s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -23,30 +25,29 @@
 </head>
 <body class="text-gray-800 antialiased pb-20">
 
-    <!-- Header & Score -->
-    <header class="bg-blue-800 text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
-                <h1 class="text-2xl font-bold">إدارة مؤسسات مالية - بنك الأسئلة</h1>
-                <p class="text-sm text-blue-200 mt-1">د/ محمود نبيل | المستوى الرابع - نظم معلومات</p>
+       <!-- Compact Header -->
+    <header class="bg-blue-800 text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-3 py-1.5 flex justify-between items-center gap-2">
+            <div class="min-w-0 leading-tight">
+                <h1 class="text-xs md:text-sm font-bold truncate">إدارة مؤسسات مالية - بنك الأسئلة</h1>
+                <p class="text-[9px] md:text-[10px] text-blue-200">د/ محمود نبيل | المستوى الرابع - نظم معلومات</p>
+                <p class="text-[8px] md:text-[9px] text-blue-300 font-bold">Created by Mahmoud_Algdawy</p>
             </div>
-            <div class="bg-blue-900 px-6 py-2 rounded-lg border border-blue-700 shadow-inner text-center">
-                <span class="block text-xs text-blue-300">النتيجة الحالية</span>
-                <span class="text-xl font-bold" id="score-display">0 / 0</span>
+            <div class="bg-blue-900 px-2 py-0.5 rounded text-[10px] md:text-xs font-bold shadow-inner whitespace-nowrap flex-none">
+                <span id="score-display">0 / 0</span>
             </div>
         </div>
-        
         <!-- Tabs Navigation -->
-        <nav class="flex overflow-x-auto bg-blue-700 text-sm font-semibold">
-            <button onclick="switchTab('tf')" id="tab-tf" class="tab-btn flex-1 py-3 px-4 hover:bg-blue-600 transition focus:outline-none whitespace-nowrap bg-blue-600 border-b-4 border-white">صح وخطأ</button>
-            <button onclick="switchTab('mcq')" id="tab-mcq" class="tab-btn flex-1 py-3 px-4 hover:bg-blue-600 transition focus:outline-none whitespace-nowrap border-b-4 border-transparent">اختيار من متعدد</button>
-            <button onclick="switchTab('essay')" id="tab-essay" class="tab-btn flex-1 py-3 px-4 hover:bg-blue-600 transition focus:outline-none whitespace-nowrap border-b-4 border-transparent">أسئلة مقالية وعملية</button>
-            <button onclick="switchTab('formulas')" id="tab-formulas" class="tab-btn flex-1 py-3 px-4 hover:bg-blue-600 transition focus:outline-none whitespace-nowrap border-b-4 border-transparent text-yellow-300">📚 المرجع الشامل للقوانين</button>
+        <nav class="flex overflow-x-auto bg-blue-700 text-[10px] md:text-xs font-semibold">
+            <button onclick="switchTab('tf')" id="tab-tf" class="tab-btn py-1.5 px-2.5 hover:bg-blue-600 transition focus:outline-none whitespace-nowrap bg-blue-600 border-b-2 border-white">صح وخطأ</button>
+            <button onclick="switchTab('mcq')" id="tab-mcq" class="tab-btn py-1.5 px-2.5 hover:bg-blue-600 transition focus:outline-none whitespace-nowrap border-b-2 border-transparent">اختيار من متعدد</button>
+            <button onclick="switchTab('essay')" id="tab-essay" class="tab-btn py-1.5 px-2.5 hover:bg-blue-600 transition focus:outline-none whitespace-nowrap border-b-2 border-transparent">أسئلة مقالية وعملية</button>
+            <button onclick="switchTab('formulas')" id="tab-formulas" class="tab-btn py-1.5 px-2.5 hover:bg-blue-600 transition focus:outline-none whitespace-nowrap border-b-2 border-transparent text-yellow-300">📚 المرجع الشامل للقوانين</button>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 mt-8 max-w-5xl">
+    <main class="container mx-auto px-3 mt-2 max-w-5xl">
         
         <!-- Tab 1: True / False -->
         <section id="tf" class="tab-content active space-y-6"></section>
